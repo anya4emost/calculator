@@ -1,12 +1,13 @@
-var webpack = require('webpack');
-let HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require("path");
 
 const {CheckerPlugin} = require('awesome-typescript-loader');
 
 module.exports = {
     entry: './client/index.tsx',
     output: {
-        path: __dirname + '../public',
+        path: path.resolve(__dirname, '../public'),
         filename: 'bundle.js'
     },
     module: {
@@ -42,11 +43,6 @@ module.exports = {
         new webpack.DefinePlugin({
             "process.env": {
                 NODE_ENV: JSON.stringify("production")
-            }
-        }),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: true
             }
         }),
         new HtmlWebpackPlugin({

@@ -2,6 +2,6 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import "./views/style.scss";
 
-import AppRouter from './routes';
+import Routes from './routes';
 
-ReactDOM.render(<AppRouter />, document.getElementById("app"));
+ReactDOM.render(<Routes />, document.getElementById("app"));

@@ -1,10 +1,17 @@
 import * as React from 'react';
 import {BrowserRouter, Route} from 'react-router-dom';
+import Calculator from './views/calculator';
+import {Switch} from "react-router";
 
-import Home from './views/home';
+export default class Routes extends React.Component<{}, {}> {
 
-export default () => (
-    <BrowserRouter>
-        <Route path='/' component={Home} />
-    </BrowserRouter>
-);
+    render() {
+        return (
+            <BrowserRouter>
+                <Switch>
+                    <Route exact path='/' component={Calculator}/>
+                </Switch>
+            </BrowserRouter>
+        )
+    }
+}
