@@ -6,7 +6,16 @@ import calculations from '../store/screenStore';
 
 @observer
 export default class Calculator extends React.Component<Props, {}> {
+    intervalId:any;
 
+    componentDidMount() {
+        this.intervalId = setInterval(function () {
+            document.getElementById("screen").focus();
+        }, 100);
+    };
+    componentWillUnmount() {
+        clearInterval(this.intervalId);
+    }
     render() {
         return (
             <Provider calculations={calculations}>
