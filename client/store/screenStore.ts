@@ -14,12 +14,8 @@ export class Calculations {
     }
 
     enterTheNumber = (param: string) => {
-        if (this.screen == "0" && param == '.') {
+        if (!this.screen && param == '.') {
             this.screen = "0" + param;
-            return
-        }
-        if (this.screen == "0") {
-            this.screen = param;
             return
         }
         this.screen += param;
@@ -31,19 +27,14 @@ export class Calculations {
             return;
         }
 
-        if (
-            ( this.screen.search(/\./) == -1){
-            if (this.screen == "0" && event.key == '.') {
-                this.screen += event.key;
-                return
-            }
-            if (this.screen == "0") {
-                this.screen = event.key;
-                return
-            }
-            this.screen += event.key.toString();
-
+        if (this.screen.search(/\./) == -1) {
         }
+        if (!this.screen && event.key == '.') {
+            this.screen = "0" + event.key;
+            return
+        }
+        this.screen += event.key.toString();
+
         if (event.key == "=" || event.keyCode == 13) {
             this.toCalculate();
         }
