@@ -5,6 +5,7 @@ const isCorrectKey = (key: any) => {
     return key >= 0 && key <= 9 || arr.indexOf(key) != -1;
 };
 
+
 export class Calculations {
     @observable screen: string = '';
 
@@ -13,9 +14,20 @@ export class Calculations {
         return this.screen || '0';
     }
 
+    hasDot = (screen: string) => {
+        let a = screen.split(/[-+*/]/);
+        if (a[a.length - 1].indexOf(".") == -1) {
+            return false
+        }
+        return true
+    };
+
     enterTheNumber = (param: string) => {
         if (!this.screen && param == '.') {
             this.screen = "0" + param;
+            return
+        }
+        if (param == '.' && this.hasDot(this.screen)) {
             return
         }
         this.screen += param;
@@ -27,7 +39,8 @@ export class Calculations {
             return;
         }
 
-        if (this.screen.search(/\./) == -1) {
+        if (event.key == '.' && this.hasDot(this.screen)) {
+            return
         }
         if (!this.screen && event.key == '.') {
             this.screen = "0" + event.key;
@@ -44,7 +57,6 @@ export class Calculations {
                 this.screen = "0"
             }
         }
-        console.log(this.screen.search(/\./));
     };
 
     reset = () => {
@@ -55,4 +67,6 @@ export class Calculations {
     }
 }
 
-export default new Calculations();
+export default new
+
+Calculations();
