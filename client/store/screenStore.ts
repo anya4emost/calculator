@@ -27,10 +27,20 @@ export class Calculations {
         }
         return true
     };
+    nullBefore=(screen: string)=>{
+        let a = screen.split(/[-+*/]/);
+        if (a[a.length - 1] !== "0") {
+            return false
+        }
+        return true
+    };
 
     enterTheNumber = (param: string) => {
         if (!this.screen && param == '.') {
             this.screen = "0" + param;
+            return
+        }
+        if(param == "0" && this.nullBefore(this.screen)){
             return
         }
         if (this.screen == "0" && param == "0") {
@@ -52,7 +62,9 @@ export class Calculations {
                 this.screen = "0" + event.key;
                 return
             }
-
+            if(event.key == "0" && this.nullBefore(this.screen)){
+                return
+            }
             if (this.screen == "0" && event.key == "0") {
                 return
             }
